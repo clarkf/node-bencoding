@@ -57,8 +57,12 @@ Performance compared to:
 * Stefan Bühler's [dht-bencode](https://github.com/stbuehler/nodejs-dht-bencode)
 
 This library seems to __decode__ faster than any of the other tested
-libraries. It __encodes__ quickly – second only to Mark Schmale's 
-library. Results:
+libraries. It __encodes__ quickly. Not as quickly as `bencode` or
+`dht-encode`, probably because they both operate on `String`s (vs
+`Buffer`s), and `String` concatenation is quicker than `Buffer`
+concatenation.
+
+Results:
 
 > Encoding:
 >
