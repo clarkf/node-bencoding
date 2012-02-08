@@ -1,7 +1,7 @@
-var expect = require('expect.js'),
-    assert = require('assert'),
-    crypto = require('crypto'),
-    fs = require('fs'),
+var expect    = require('expect.js'),
+    assert    = require('assert'),
+    crypto    = require('crypto'),
+    fs        = require('fs'),
     bencoding = require('../lib/bencoding');
 
 function fixture(name) {
@@ -14,7 +14,40 @@ function shasum(val) {
     return new Buffer(hasher.digest('binary'), 'binary');
 };
 
-describe("Decoding", function () {
+describe("bencoding", function () {
+    it("Exports an appropriate API", function () {
+        var bmethods = ['encode', 'decode', 'BDict'],
+            bdictmethods = ['vget', 'kget', 'get', 'toJSON', 'remove', 'add'];
+        expect(bencoding).to.have.key('version');
+        expect(bencoding.version).to.match(/\d\.\d\.\d/i);
+        expect(bencoding).to.have.keys(bmethods);
+        bmethods.forEach(function (m) {
+            expect(bencoding[m]).to.be.a('function');
+        });
+        expect(bencoding.BDict.prototype).to.have.keys(bdictmethods);
+        bdictmethods.forEach(function (m) {
+            expect(bencoding.BDict.prototype[m]).to.be.a('function');
+        });
+    });
+    it("supports the BDict api", function () {
+        var x = new bencoding.BDict();
+        expect(x.length).to.be(0);
+        expect(x.keys).to.have.length(0);
+        expect(x.vals).to.have.length(0);
+        expect(x.get(0)).to.be(undefined);
+        expect(x.vget(0)).to.be(undefined);
+        expect(x.kget(0)).to.be(undefined);
+        expect(x.add('key1', 'val1')).to.be(x);
+        expect(x.add('key2', 'val2')).to.be(x);
+        expect(x.add('key3', 'val3')).to.be(x);
+        assert.deepEqual(x.get(0), ['key1', 'val1']);
+        assert.deepEqual(x.get(1), ['key2', 'val2']);
+        assert.deepEqual(x.get(2), ['key3', 'val3']);
+        expect(x.length).to.be(3);
+        expect(x.remove(1)).to.be(x);
+        expect(x.length).to.be(2);
+        assert.deepEqual(x.get(1), ['key3', 'val3']);
+    });
     it("can decode simple.txt", function (done) {
         var data = fixture('simple.txt'),
             res = bencoding.decode(data).toJSON();
@@ -59,10 +92,9 @@ describe("Decoding", function () {
 
         expect(function () {
             bencoding.decode(data);
-        }).to.throwError(function (e) {
-            console.log(e);
-        });
+        }).to.throwError();
         done();
     });
-    it("can decode a http tracker response");
+    it("can decode a http scrape response");
+    it("can decode a http announce response");
 });
