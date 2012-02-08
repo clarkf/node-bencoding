@@ -9,7 +9,9 @@
       "type": "git",
       "url": "git://github.com/clarkf/node-bencoding.git"
   }
-  , "homepage": "https://github.com/clarkf/node-bencoding"
+  , "bugs": {
+      "url": "https://github.com/clarkf/node-bencoding/issues"
+  }
   , "scripts": {
       "test": "make test"
   }
