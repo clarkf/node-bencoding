@@ -8,6 +8,10 @@
   , "devDependencies": {
       "mocha": ""
     , "expect.js": ""
+    , "benchmark": "~0.3.0"
+    , "dht-bencode": ""
+    , "bncode": ""
+    , "bencode": ""
   }
   , "main": "index"
   , "engines": { "node": "0.6.x" }
