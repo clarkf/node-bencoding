@@ -5,6 +5,7 @@
   , "keywords": []
   , "author": "Clark Fischer <clark.fischer@gmail.com>"
   , "dependencies": {}
+  , "main": "./lib/bencoding"
   , "devDependencies": {
       "mocha": ""
     , "expect.js": ""
@@ -14,5 +15,5 @@
     , "bencode": ""
   }
   , "main": "index"
-  , "engines": { "node": "0.6.x" }
+  , "engines": { "node": ">= 0.4.7" }
 }
