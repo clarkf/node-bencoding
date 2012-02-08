@@ -2,10 +2,18 @@
     "name": "bencoding"
   , "version": "0.0.1"
   , "description": "encode/decode bencoded data"
-  , "keywords": []
-  , "author": "Clark Fischer <clark.fischer@gmail.com>"
-  , "dependencies": {}
+  , "keywords": ["torrent", "bittorrent", "bencode", "bdecode", "bencoding", "buffers"]
+  , "author": "Clark Fischer <clark.fischer@gmail.com> (https://github.com/clarkf)"
   , "main": "./lib/bencoding"
+  , "repository": {
+      "type": "git",
+      "url": "git://github.com/clarkf/node-bencoding.git"
+  }
+  , "homepage": "https://github.com/clarkf/node-bencoding"
+  , "scripts": {
+      "test": "make test"
+  }
+  , "dependencies": {}
   , "devDependencies": {
       "mocha": ""
     , "expect.js": ""
