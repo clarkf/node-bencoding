@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/clarkf/node-bencoding.png)](http://travis-ci.org/clarkf/node-bencoding)
 # bencoding
 
 A node library for encoding and decoding data, according to [the
